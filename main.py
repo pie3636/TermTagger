@@ -16,7 +16,6 @@ class ClassmateError(Exception):
 class SentenceDataset(Dataset):
     def __init__(self, data_dir):
         self.data = []
-        self.errors = []
         for file in Path(data_dir).rglob('*final'):
             lines = open(file, encoding='utf-8').read().splitlines()
             tokens = []
@@ -24,24 +23,19 @@ class SentenceDataset(Dataset):
             for i, line in enumerate(lines):
                 line = line.strip()
                 if line:
-                    tabs = line.count('\t')
-                    if tabs != 1:
-                        self.errors.append(ClassmateError(f'Encountered [{repr(line)}] with {tabs} tabulations', line, file, i))
-                        continue
-                    split = line.strip().split()
-                    try:
-                        token, *_, label = split
-                    except:
-                        print(file, i)
-                        raise
+                    # tabs = line.count('\t')
+                    # if tabs != 1:
+                        # raise ClassmateError(f'Encountered [{repr(line)}] with {tabs} tabulations', line, file, i)
 
+                    split = line.strip().split()
+                    token, *_, label = split
 
                     if label not in 'BIO':
-                        self.errors.append(ClassmateError(f'Label is [{repr(label)}]', line, file, i))
+                        raise ClassmateError(f'Label is [{repr(label)}]', line, file, i)
                     if not isinstance(token, str):
-                        self.errors.append(ClassmateError(f'Token [{repr(token)}] is a {type(token)}', line, file, i))
+                        raise ClassmateError(f'Token [{repr(token)}] is a {type(token)}', line, file, i)
                     if not isinstance(label, str):
-                        self.errors.append(ClassmateError(f'Label [repr({label})] is a {type(label)}', line, file, i))
+                        raise ClassmateError(f'Label [repr({label})] is a {type(label)}', line, file, i)
                     tokens.append(token)
                     labels.append(label)
                 else:
@@ -57,16 +51,6 @@ class SentenceDataset(Dataset):
 
 
 train_set = SentenceDataset('data/train')
-for error in train_set.errors:
-    print(repr(error))
-print(len(train_set.errors), sum(len(x[0]) for x in train_set.data))
-
 dev_set = SentenceDataset('data/dev')
-for error in dev_set.errors:
-    print(repr(error))
-print(len(dev_set.errors), sum(len(x[0]) for x in dev_set.data))
-
 test_set = SentenceDataset('data/test')
-for error in test_set.errors:
-    print(repr(error))
-print(len(test_set.errors), sum(len(x[0]) for x in test_set.data))
+
