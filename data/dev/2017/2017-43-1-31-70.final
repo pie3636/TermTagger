@@ -42,7 +42,7 @@ represented	I
 as	I
 classes	I
 .	O
-	O
+
 The	O
 words	B
 simultaneously	O
@@ -63,7 +63,7 @@ likely	O
 to	O
 choose	O
 .	O
-	O
+
 We	O
 use	O
 distributional	B
@@ -96,7 +96,7 @@ among	O
 the	O
 choices	O
 .	O
-	O
+
 With	O
 this	O
 information	O
@@ -128,7 +128,7 @@ the	O
 textual	B
 coherence	I
 .	O
-	O
+
 The	O
 model	B
 is	O
@@ -168,7 +168,7 @@ some	O
 of	O
 them	O
 .	O
-	O
+
 The	O
 article	O
 provides	O
@@ -200,7 +200,7 @@ by	O
 an	O
 example	O
 .	O
-	O
+
 The	O
 conclusion	O
 presents	O
@@ -231,7 +231,7 @@ the	I
 art	I
 systems	O
 .	O
-	O
+
 The	O
 results	O
 show	O

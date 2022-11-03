@@ -44,7 +44,7 @@ between	O
 concept	B
 pairs	I
 .	O
-	O
+
 Cognitive	B
 psychology	I
 research	O
@@ -71,7 +71,7 @@ than	O
 binary	B
 relation	I
 .	O
-	O
+
 Nevertheless	O
 ,	O
 most	O
@@ -103,7 +103,7 @@ LE	B
 as	O
 binary	B
 .	O
-	O
+
 To	O
 address	O
 this	O
@@ -135,7 +135,7 @@ a	O
 crowdsourcing	O
 platform	O
 .	O
-	O
+
 Our	O
 results	O
 confirm	O
@@ -151,7 +151,7 @@ gradual	B
 than	O
 binary	B
 .	O
-	O
+
 We	O
 then	O
 compare	O
@@ -197,7 +197,7 @@ the	O
 models	B
 themselves	O
 .	O
-	O
+
 We	O
 discuss	O
 a	O

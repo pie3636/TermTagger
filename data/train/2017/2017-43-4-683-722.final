@@ -27,7 +27,7 @@ structure	I
 they	O
 learn	O
 .	O
-	O
+
 As	O
 a	O
 case	O
@@ -95,7 +95,7 @@ the	O
 same	O
 sentence	B
 .	O
-	O
+
 We	O
 propose	O
 a	O
@@ -120,7 +120,7 @@ of	O
 the	O
 networks	B
 .	O
-	O
+
 Using	O
 this	O
 method	B
@@ -168,7 +168,7 @@ of	O
 the	O
 sentence	O
 .	O
-	O
+
 In	O
 contrast	O
 ,	O
@@ -186,7 +186,7 @@ a	I
 syntactic	I
 function	I
 .	O
-	O
+
 Further	O
 analysis	O
 of	O

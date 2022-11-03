@@ -40,7 +40,7 @@ and	O
 sentence	B
 segmentation	I
 .	O
-	O
+
 In	O
 this	O
 article	O
@@ -62,7 +62,7 @@ regulating	O
 these	O
 interactions	O
 .	O
-	O
+
 Our	O
 approach	O
 integrates	O
@@ -81,7 +81,7 @@ surface	B
 realization	I
 algorithm	I
 .	O
-	O
+
 It	O
 is	O
 applied	O
@@ -103,7 +103,7 @@ demonstrate	O
 domain	B
 independence	I
 .	O
-	O
+
 We	O
 evaluate	B
 our	I
@@ -112,7 +112,7 @@ in	O
 several	O
 ways	O
 .	O
-	O
+
 A	O
 quantitative	B
 analysis	I
@@ -134,7 +134,7 @@ speed	O
 and	O
 coverage	O
 .	O
-	O
+
 Results	O
 from	O
 a	O
@@ -163,13 +163,13 @@ template	B
 based	I
 and	O
 a	O
-purely	0
-symbolic	0
+purely	O
+symbolic	O
 grammar	B
 based	I
 approach	I
 .	O
-	O
+
 Finally	O
 ,	O
 we	O

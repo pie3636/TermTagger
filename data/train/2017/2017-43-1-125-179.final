@@ -23,7 +23,7 @@ people	O
 's	O
 argumentation	B
 .	O
-	O
+
 In	O
 this	O
 article	O
@@ -40,7 +40,7 @@ in	O
 several	O
 ways	O
 .	O
-	O
+
 (	O
 i	O
 )	O
@@ -74,11 +74,11 @@ generated	B
 Web	I
 discourse	I
 .	O
-	O
+
 (	O
 ii	O
 )	O
-	O
+
 We	O
 bridge	O
 the	O
@@ -106,7 +106,7 @@ extensive	O
 annotation	B
 study	O
 .	O
-	O
+
 (	O
 iii	O
 )	O
@@ -136,7 +136,7 @@ identify	B
 argument	I
 components	I
 .	O
-	O
+
 We	O
 offer	O
 the	O
@@ -155,7 +155,7 @@ under	O
 free	O
 licenses	O
 .	O
-	O
+
 Our	O
 findings	O
 show	O

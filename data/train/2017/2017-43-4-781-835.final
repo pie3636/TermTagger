@@ -20,7 +20,7 @@ a	O
 parallel	B
 treebank	I
 .	O
-	O
+
 To	O
 do	O
 this	O
@@ -63,7 +63,7 @@ spurious	O
 translation	B
 divergences	I
 .	O
-	O
+
 Using	O
 this	O
 Hierarchically	B
@@ -102,7 +102,7 @@ of	O
 translation	B
 divergence	I
 .	O
-	O
+
 Our	O
 results	O
 show	O
@@ -129,7 +129,7 @@ and	O
 linguistic	B
 knowledge	I
 .	O
-	O
+
 The	O
 distribution	B
 of	I
@@ -173,7 +173,7 @@ in	O
 large	O
 quantities	O
 .	O
-	O
+
 We	O
 also	O
 show	O
@@ -220,7 +220,7 @@ such	O
 translation	B
 rules	I
 .	O
-	O
+
 We	O
 also	O
 discuss	O
@@ -243,7 +243,7 @@ representations	I
 across	I
 languages	I
 .	O
-	O
+
 Our	O
 quantitative	O
 results	O

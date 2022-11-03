@@ -22,7 +22,7 @@ discontinuous	B
 syntactic	I
 structures	I
 .	O
-	O
+
 Covered	O
 are	O
 both	O
@@ -36,7 +36,7 @@ projective	I
 dependency	I
 structures	I
 .	O
-	O
+
 Technically	O
 ,	O
 hybrid	B
@@ -60,7 +60,7 @@ generates	O
 hierarchical	B
 structures	I
 .	O
-	O
+
 By	O
 coupling	O
 lexical	B
@@ -74,7 +74,7 @@ discontinuous	B
 structures	I
 result	O
 .	O
-	O
+
 Several	O
 types	O
 of	O
@@ -83,7 +83,7 @@ grammars	I
 are	O
 characterized	O
 .	O
-	O
+
 We	O
 also	O
 discuss	O
@@ -92,7 +92,7 @@ induction	I
 from	O
 treebanks	B
 .	O
-	O
+
 The	O
 main	O
 advantage	O
@@ -118,7 +118,7 @@ complexity	I
 of	I
 parsing	I
 .	O
-	O
+
 This	O
 permits	O
 exploration	O
@@ -137,7 +137,7 @@ with	O
 different	O
 properties	O
 .	O
-	O
+
 This	O
 is	O
 confirmed	O

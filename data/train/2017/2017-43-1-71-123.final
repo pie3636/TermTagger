@@ -19,7 +19,7 @@ NLP	B
 )	O
 applications	I
 .	O
-	O
+
 Computational	B
 work	I
 on	I
@@ -43,7 +43,7 @@ hard	O
 to	O
 scale	O
 .	O
-	O
+
 Recent	O
 years	O
 have	O
@@ -57,7 +57,7 @@ to	O
 metaphor	B
 processing	I
 .	O
-	O
+
 However	O
 ,	O
 these	O
@@ -77,7 +77,7 @@ a	O
 limited	O
 domain	O
 .	O
-	O
+
 In	O
 contrast	O
 ,	O
@@ -110,7 +110,7 @@ properties	I
 of	I
 concepts	I
 .	O
-	O
+
 We	O
 investigate	O
 different	O
@@ -149,7 +149,7 @@ constrained	O
 clustering	B
 settings	I
 .	O
-	O
+
 Our	O
 aim	O
 is	O
@@ -173,7 +173,7 @@ association	I
 from	B
 text	I
 .	O
-	O
+
 In	O
 order	O
 to	O
@@ -212,14 +212,14 @@ state	B
 of	I
 -	I
 the	I
--	II
+-	I
 art	I
 results	O
 with	O
 little	B
 supervision	I
 .	O
-	O
+
 Finally	O
 ,	O
 we	O

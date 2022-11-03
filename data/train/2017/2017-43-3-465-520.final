@@ -18,7 +18,7 @@ machine	B
 translation	I
 evaluation	I
 .	O
-	O
+
 We	O
 first	O
 design	O
@@ -50,7 +50,7 @@ Theory	I
 RST	I
 )	O
 .	O
-	O
+
 Then	O
 ,	O
 we	O
@@ -88,11 +88,11 @@ the	O
 system	B
 level	I
 .	O
-	O
+
 This	O
 suggests	O
 that	O
-discourse	b
+discourse	B
 information	I
 is	O
 complementary	O
@@ -131,7 +131,7 @@ combined	O
 metric	B
 DiscoTKparty	B
 .	O
-	O
+
 We	O
 also	O
 provide	O
@@ -157,7 +157,7 @@ machine	B
 translation	I
 evaluation	I
 .	O
-	O
+
 In	O
 particular	O
 ,	O
