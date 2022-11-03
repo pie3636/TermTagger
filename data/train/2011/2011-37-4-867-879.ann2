@@ -1,0 +1,138 @@
+Bilexical	B
+context	I
+-	I
+free	I
+grammars	I
+(	O
+2	B
+-	I
+LCFGs	I
+)	O
+have	O
+proved	O
+to	O
+be	O
+accurate	O
+models	B
+for	O
+statistical	B
+natural	I
+language	I
+parsing	B
+.	O
+
+
+Existing	O
+dynamic	B
+programming	I
+algorithms	I
+used	O
+to	O
+parse	B
+sentences	O
+under	O
+these	O
+models	B
+have	O
+running	B
+time	I
+of	O
+O(∣w∣4	O
+)	O
+,	O
+where	O
+w	O
+is	O
+the	O
+input	O
+string	B
+.	O
+
+
+
+
+	O
+A	O
+2	B
+-	I
+LCFG	I
+is	O
+splittable	B
+if	O
+the	O
+left	O
+arguments	B
+of	O
+a	O
+lexical	B
+head	I
+are	O
+always	O
+independent	O
+of	O
+the	O
+right	O
+arguments	B
+,	O
+and	O
+vice	O
+versa	O
+.	O
+
+
+When	O
+a	O
+2	B
+-	I
+LCFGs	I
+is	O
+splittable	B
+,	O
+parsing	B
+time	O
+can	O
+be	O
+asymptotically	O
+improved	O
+to	O
+O(∣w∣3	O
+)	O
+.	O
+
+
+Testing	O
+this	O
+property	O
+is	O
+therefore	O
+of	O
+central	O
+interest	O
+to	O
+parsing	B
+efficiency	O
+.	O
+
+
+In	O
+this	O
+article	O
+,	O
+however	O
+,	O
+we	O
+show	O
+the	O
+negative	O
+result	O
+that	O
+splittability	B
+of	O
+2	B
+-	I
+LCFGs	I
+is	O
+undecidable	B
+.	O
+
+
