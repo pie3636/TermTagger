@@ -1,47 +1,56 @@
-from torch.utils.data import Dataset
-from pathlib import Path
+from datasets import SentenceDataset, SlidingWindowDataset, WordDataset
+from models.svm import SupportVectorMachine
+from sklearn.metrics import classification_report
+
+import datasets
+import gensim
+import numpy as np
+import zipfile
+
+from tqdm import tqdm
+
+WINDOW_SIZE = 3
+
+def get_embeds(dataset, embeds, single_pred=False):
+    inputs = []
+    outputs = []
+    for tokens, tag in tqdm(dataset):
+        current_input = np.empty(vector_size*WINDOW_SIZE)
+        for i, token in enumerate(tokens):
+            if token in embeds:
+                current_input[vector_size*i:vector_size*(i+1)] = embeds[token]
+            else:
+                current_input[vector_size*i:vector_size*(i+1)] = np.zeros(vector_size)
+        inputs.append(current_input)
+        outputs.append(tag[0] if single_pred else tag)
+    return inputs, outputs
 
 
-class ClassmateError(Exception):
-    def __init__(self, message, line_content, file, line):
-        year = file.parts[2]
-        super().__init__(f'In {file.parts[-1]:25} at {line:4} [{repr(line_content) + "]":25}: ' + message)
+
+print('Reading embeddings')
+embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap='r')
+vector_size = embeds.vector_size
+
+print('Loading dataset')
+train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True)
+dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True)
+test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True)
 
 
-class SentenceDataset(Dataset):
-    def __init__(self, data_dir):
-        self.data = []
-        for file in Path(data_dir).rglob('*final'):
-            lines = open(file, encoding='utf-8').read().splitlines()
-            tokens = []
-            labels = []
-            for i, line in enumerate(lines):
-                line = line.strip()
-                if line:
-                    split = line.strip().split()
-                    token, *_, label = split
+svm_clf = SupportVectorMachine()
 
-                    if label not in 'BIO':
-                        raise ClassmateError(f'Label is [{repr(label)}]', line, file, i)
-                    if not isinstance(token, str):
-                        raise ClassmateError(f'Token [{repr(token)}] is a {type(token)}', line, file, i)
-                    if not isinstance(label, str):
-                        raise ClassmateError(f'Label [repr({label})] is a {type(label)}', line, file, i)
-                    tokens.append(token)
-                    labels.append(label)
-                else:
-                    self.data.append((tokens, labels))
-                    tokens = []
-                    labels = []
+print('Computing input embeddings')
+train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
 
-    def __len__(self):
-        return len(self.data)
+print('Training model')
+svm_clf.train(train_inputs, train_outputs)
 
-    def __getitem__(self, idx):
-        return self.data[idx]
+print('Computing test embeddings')
+test_inputs, test_outputs = get_embeds(test_set, embeds, single_pred=True)
 
+print('Computing predictions')
+pred = svm_clf.predict(test_inputs)
 
-train_set = SentenceDataset('data/train')
-dev_set = SentenceDataset('data/dev')
-test_set = SentenceDataset('data/test')
+test_outputs = np.ravel(test_outputs)
+print(classification_report(test_outputs, pred, target_names=datasets.tag_names, digits=4, zero_division=0))
 
