@@ -11,7 +11,7 @@ class MyAmazingLogisticRegression:
         words = np.array(inputs)
         tags = np.ravel(np.array(outputs))
         self.model.fit(words, tags)
-        return self.model.coef_()
+        return self.model.coef_
 
     def predict(self, inputs):
         words = np.array(inputs)
