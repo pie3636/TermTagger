@@ -14,15 +14,20 @@ WINDOW_SIZE = 3
 def get_embeds(dataset, embeds, single_pred=False):
     inputs = []
     outputs = []
-    for tokens, tag in tqdm(dataset):
+    for tokens, *features, tags in tqdm(dataset):
         current_input = np.empty(vector_size*WINDOW_SIZE)
+        current_input_features = []
         for i, token in enumerate(tokens):
             if token in embeds:
                 current_input[vector_size*i:vector_size*(i+1)] = embeds[token]
             else:
                 current_input[vector_size*i:vector_size*(i+1)] = np.zeros(vector_size)
+            for feature in features:
+                current_input_features.append(feature[i])
+        if current_input_features:
+            current_input = np.concatenate([current_input, *current_input_features])
         inputs.append(current_input)
-        outputs.append(tag[0] if single_pred else tag)
+        outputs.append(tags[0] if single_pred else tags)
     return inputs, outputs
 
 
@@ -31,10 +36,10 @@ print('Reading embeddings')
 embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap='r')
 vector_size = embeds.vector_size
 
-print('Loading dataset')
-train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True)
-dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True)
-test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True)
+print('Loading and preparing dataset')
+train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, add_pos=True)
+dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, add_pos=True)
+test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, add_pos=True)
 
 
 svm_clf = SupportVectorMachine()

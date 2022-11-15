@@ -1,9 +1,16 @@
-from torch.utils.data import Dataset
 from pathlib import Path
+from sklearn.preprocessing import OneHotEncoder
+from torch.utils.data import Dataset
+
+import numpy as np
+import spacy
+
+udp_pos = ['ADJ', 'ADP', 'PUNCT', 'ADV', 'AUX', 'SYM', 'INTJ', 'CCONJ', 'X', 'NOUN', 'DET', 'PROPN', 'NUM', 'VERB', 'PART', 'PRON', 'SCONJ'] # https://universaldependencies.org/u/pos/
 
 tag_names = ['B', 'I', 'O']
 tag2idx = {tag: i for i, tag in enumerate(tag_names)}
 
+nlp = spacy.load("en_core_web_sm")
 
 def pad(data, length, value):
     if len(data) < length:
@@ -18,8 +25,12 @@ class ClassmateError(Exception):
 
 
 class SentenceDataset(Dataset):
-    def __init__(self, data_dir, uncap_first=False):
+    def __init__(self, data_dir, add_pos=False):
         self.data = []
+        self.feature_list = []
+        if add_pos:
+            self.feature_list.append('POS')
+            self.pos_enc = OneHotEncoder(sparse=False).fit([[pos] for pos in udp_pos])
         for file in Path(data_dir).rglob('*final'):
             lines = open(file, encoding='utf-8').read().splitlines()
             tokens = []
@@ -41,7 +52,17 @@ class SentenceDataset(Dataset):
                     tokens.append(token)
                     tags.append(tag2idx[tag])
                 else:
-                    self.data.append((tokens, tags))
+                    data_to_add = [tokens, tags]
+                    if 'POS' in self.feature_list:
+                        pos = []
+                        doc = nlp(' '.join(tokens))
+                        for token in doc:
+                            pos.append(self.pos_enc.transform([[token.pos_]])[0])
+                        #print(pos)
+                        data_to_add = data_to_add[:-1] + [pos] + [data_to_add[-1]]
+                        #print(data_to_add)
+                        #input()
+                    self.data.append(data_to_add)
                     tokens = []
                     tags = []
 
@@ -53,8 +74,8 @@ class SentenceDataset(Dataset):
 
 
 class WordDataset(SentenceDataset):
-    def __init__(self, data_dir, uncap_first=False):
-        super().__init__(data_dir, uncap_first)
+    def __init__(self, data_dir, uncap_first=False, **kwargs):
+        super().__init__(data_dir, **kwargs)
         self.inputs = []
         self.outputs = []
         new_data = []
@@ -67,15 +88,25 @@ class WordDataset(SentenceDataset):
 
 
 class SlidingWindowDataset(SentenceDataset):
-    def __init__(self, data_dir, window_size=3, uncap_first=False):
-        super().__init__(data_dir, uncap_first)
+    def __init__(self, data_dir, window_size=3, uncap_first=False, **kwargs):
+        super().__init__(data_dir, **kwargs)
         self.window_size = window_size
         self.uncap_first = uncap_first
         new_data = []
-        for tokens, tags in self.data:
+        for tokens, *features, tags in self.data:
             if len(tokens) < window_size: # If the sentence doesn't have enough words, fill it with dots
-                new_data.append((pad(tokens, window_size, '.'), pad(tags, window_size, tag2idx['O'])))
+                tokens = pad(tokens, window_size, '.')
+                feature_idx = 0
+                if 'POS' in self.feature_list:
+                    features[feature_idx] = np.array(pad(features[feature_idx], 3, np.zeros(len(udp_pos))))
+                    feature_idx += 1
+                tags = pad(tags, window_size, tag2idx['O'])
+                new_data.append((tokens, *features, tags))
             else:
                 for i in range(0, len(tokens) - window_size + 1):
-                    new_data.append((tokens[i:i+window_size], tags[i:i+window_size // 2]))
+                    new_data.append((
+                        tokens[i:i+window_size],
+                        *[feature[i:i+window_size] for feature in features],
+                        tags[i:i+window_size // 2]
+                        ))
         self.data = new_data
