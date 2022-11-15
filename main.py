@@ -12,6 +12,17 @@ from tqdm import tqdm
 
 WINDOW_SIZE = 3
 
+"""
+Input feature selection
+-----------------------
+
+Possible values:
+- POS: Part-of-speech tags (one-hot encoded)
+- WL:  Word length
+"""
+features = ['POS', 'WL']
+
+
 def get_embeds(dataset, embeds, single_pred=False):
     inputs = []
     outputs = []
@@ -38,37 +49,33 @@ embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap
 vector_size = embeds.vector_size
 
 print('Loading and preparing dataset')
-train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, add_pos=True)
-dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, add_pos=True)
-test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, add_pos=True)
+
+train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, features=features)
+dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, features=features)
+test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, features=features)
 
 
-svm_clf = SupportVectorMachine()
-lr_clf = MyLogisticRegression()
+clfs = [
+        ('SVM', SupportVectorMachine()),
+        ('LR', MyLogisticRegression())
+]
 
 print('Computing input embeddings')
 train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
 
-print('Training SVM model')
-svm_clf.train(train_inputs, train_outputs)
+print('Computing dev embeddings')
+dev_inputs, dev_outputs = get_embeds(dev_set, embeds, single_pred=True)
 
-print('Training LR model')
-lr_clf.train(train_inputs, train_outputs)
+preds = []
+for name, clf in tqdm(clfs):
+    print(f'Training {name} model')
+    clf.train(train_inputs, train_outputs)
+    print(f'Computing {name} predictions')
+    preds.append(clf.predict(dev_inputs))
 
-print('Computing SVM test embeddings')
-test_inputs, test_outputs = get_embeds(test_set, embeds, single_pred=True)
+dev_outputs = np.ravel(dev_outputs)
 
-print('Computing SVM predictions')
-svm_pred = svm_clf.predict(test_inputs)
-
-print('Computing LR predictions')
-lr_pred = lr_clf.predict(test_inputs)
-
-test_outputs = np.ravel(test_outputs)
-
-print('SVM')
-print(classification_report(test_outputs, svm_pred, target_names=datasets.tag_names, digits=4, zero_division=0))
-
-print('LR')
-print(classification_report(test_outputs, lr_pred, target_names=datasets.tag_names, digits=4, zero_division=0))
+for i, (name, _) in enumerate(clfs):
+    print(f'{name} results:')
+    print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
 

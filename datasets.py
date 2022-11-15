@@ -25,11 +25,12 @@ class ClassmateError(Exception):
 
 
 class SentenceDataset(Dataset):
-    def __init__(self, data_dir, add_pos=False):
+    def __init__(self, data_dir, features=None):
+        if features is None:
+            features = []
         self.data = []
-        self.feature_list = []
-        if add_pos:
-            self.feature_list.append('POS')
+        self.feature_list = features
+        if 'POS' in features:
             self.pos_enc = OneHotEncoder(sparse=False).fit([[pos] for pos in udp_pos])
         for file in Path(data_dir).rglob('*final'):
             lines = open(file, encoding='utf-8').read().splitlines()
@@ -53,15 +54,17 @@ class SentenceDataset(Dataset):
                     tags.append(tag2idx[tag])
                 else:
                     data_to_add = [tokens, tags]
+                    doc = nlp(' '.join(tokens))
                     if 'POS' in self.feature_list:
                         pos = []
-                        doc = nlp(' '.join(tokens))
                         for token in doc:
                             pos.append(self.pos_enc.transform([[token.pos_]])[0])
-                        #print(pos)
                         data_to_add = data_to_add[:-1] + [pos] + [data_to_add[-1]]
-                        #print(data_to_add)
-                        #input()
+                    if 'WL' in self.feature_list:
+                        lengths = []
+                        for token in doc:
+                            lengths.append(np.array([len(token.text)]))
+                        data_to_add = data_to_add[:-1] + [lengths] + [data_to_add[-1]]
                     self.data.append(data_to_add)
                     tokens = []
                     tags = []
@@ -99,6 +102,9 @@ class SlidingWindowDataset(SentenceDataset):
                 feature_idx = 0
                 if 'POS' in self.feature_list:
                     features[feature_idx] = np.array(pad(features[feature_idx], 3, np.zeros(len(udp_pos))))
+                    feature_idx += 1
+                if 'WL' in self.feature_list:
+                    features[feature_idx] = np.array(pad(features[feature_idx], 3, np.zeros(1)))
                     feature_idx += 1
                 tags = pad(tags, window_size, tag2idx['O'])
                 new_data.append((tokens, *features, tags))
