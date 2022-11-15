@@ -1,5 +1,6 @@
 from datasets import SentenceDataset, SlidingWindowDataset, WordDataset
 from models.svm import SupportVectorMachine
+from models.logregr import MyLogisticRegression
 from sklearn.metrics import classification_report
 
 import datasets
@@ -43,19 +44,31 @@ test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, add_
 
 
 svm_clf = SupportVectorMachine()
+lr_clf = MyLogisticRegression()
 
 print('Computing input embeddings')
 train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
 
-print('Training model')
+print('Training SVM model')
 svm_clf.train(train_inputs, train_outputs)
 
-print('Computing test embeddings')
+print('Training LR model')
+lr_clf.train(train_inputs, train_outputs)
+
+print('Computing SVM test embeddings')
 test_inputs, test_outputs = get_embeds(test_set, embeds, single_pred=True)
 
-print('Computing predictions')
-pred = svm_clf.predict(test_inputs)
+print('Computing SVM predictions')
+svm_pred = svm_clf.predict(test_inputs)
+
+print('Computing LR predictions')
+lr_pred = lr_clf.predict(test_inputs)
 
 test_outputs = np.ravel(test_outputs)
-print(classification_report(test_outputs, pred, target_names=datasets.tag_names, digits=4, zero_division=0))
+
+print('SVM')
+print(classification_report(test_outputs, svm_pred, target_names=datasets.tag_names, digits=4, zero_division=0))
+
+print('LR')
+print(classification_report(test_outputs, lr_pred, target_names=datasets.tag_names, digits=4, zero_division=0))
 

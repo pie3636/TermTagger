@@ -3,9 +3,9 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 
 
-class MyAmazingLogisticRegression:
+class MyLogisticRegression:
     def __init__(self, *args, **kwargs):
-        self.model = LogisticRegression(*args,**kwargs)
+        self.model = LogisticRegression(*args, **kwargs)
 
     def train(self, inputs, outputs):
         words = np.array(inputs)
