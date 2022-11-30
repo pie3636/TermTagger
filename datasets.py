@@ -52,7 +52,7 @@ class SentenceDataset(Dataset):
                         token = token.lower() # TODO: Improve (only lowercase non proper nouns)
                     tokens.append(token)
                     tags.append(tag2idx[tag])
-                else:
+                elif tokens:
                     data_to_add = [tokens, tags]
                     doc = nlp(' '.join(tokens))
                     if 'POS' in self.feature_list:
