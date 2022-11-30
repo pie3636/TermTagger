@@ -4,7 +4,7 @@ from flair.data import Sentence
 tag_type = "ner"
 
 def create_fsentence(_input, verbose=False) -> Sentence:
-    tokens, tags = _input
+    tokens, *features, tags = _input
     sentence = Sentence(" ".join(tokens))
     if len(sentence) != len(tokens):
         if verbose: print("Trouble: ", sentence)
