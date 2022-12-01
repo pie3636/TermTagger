@@ -125,7 +125,9 @@ robustness	O
 and	O
 exploit	O
 phylogenetically	B
-and/or	O
+and O
+/   O
+or	O
 spatially	B
 related	I
 languages	I

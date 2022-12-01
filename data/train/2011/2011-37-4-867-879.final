@@ -36,7 +36,11 @@ have	O
 running	B
 time	I
 of	O
-O(∣w∣4	O
+O
+(∣   O
+w   O
+∣   O
+4	O
 )	O
 ,	O
 where	O
@@ -89,7 +93,11 @@ be	O
 asymptotically	B
 improved	O
 to	O
-O(∣w∣3	O
+O   O
+(∣  O
+w   O
+∣   O
+3	O
 )	O
 .	O
 
