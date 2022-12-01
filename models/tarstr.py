@@ -7,7 +7,7 @@ def create_fsentence(_input, verbose=False) -> Sentence:
     tokens, *features, tags = _input
     sentence = Sentence(" ".join(tokens))
     if len(sentence) != len(tokens):
-        if verbose: print("Trouble: ", sentence)
+        print("Trouble: ", sentence)
         return sentence
     for i, token in enumerate(tokens):
         if tags[i] == 2:
