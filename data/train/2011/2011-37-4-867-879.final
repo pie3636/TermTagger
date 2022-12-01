@@ -36,10 +36,10 @@ have	O
 running	B
 time	I
 of	O
-O
-(∣   O
-w   O
-∣   O
+O	O
+(∣	O
+w	O
+∣	O
 4	O
 )	O
 ,	O
@@ -93,10 +93,10 @@ be	O
 asymptotically	B
 improved	O
 to	O
-O   O
-(∣  O
-w   O
-∣   O
+O	O
+(∣	O
+w	O
+∣	O
 3	O
 )	O
 .	O
