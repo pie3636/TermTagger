@@ -51,8 +51,8 @@ class SentenceDataset(Dataset):
                     if not tokens:
                         token = token.lower() # TODO: Improve (only lowercase non proper nouns)
                     if token == "'s":
-                        token.append("'")
-                        token.append('s')
+                        tokens.append("'")
+                        tokens.append('s')
                         tags.append(tag2idx[tag])
                         tags.append(tag2idx[tag])
                     else:
