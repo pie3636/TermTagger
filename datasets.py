@@ -1,3 +1,5 @@
+from flair.data import FlairDataset, Sentence
+from models.tarstr import flair_tag_type
 from pathlib import Path
 from sklearn.preprocessing import OneHotEncoder
 from torch.utils.data import Dataset
@@ -9,6 +11,7 @@ udp_pos = ['ADJ', 'ADP', 'PUNCT', 'ADV', 'AUX', 'SYM', 'INTJ', 'CCONJ', 'X', 'NO
 
 tag_names = ['B', 'I', 'O']
 tag2idx = {tag: i for i, tag in enumerate(tag_names)}
+
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -127,3 +130,36 @@ class SlidingWindowDataset(SentenceDataset):
                         tags[i:i+window_size // 2]
                         ))
         self.data = new_data
+
+
+def create_fsentence(_input, verbose=False) -> Sentence:
+    tokens, *features, tags = _input
+    sentence = Sentence(" ".join(tokens))
+    if len(sentence) != len(tokens):
+        print("Trouble: ", sentence)
+        return sentence
+    for i, token in enumerate(tokens):
+        if tags[i] == 2:
+            continue
+        if tags[i] == 0:
+            onset = i
+            offset = i+1
+            for tag in tags[i+1:]:
+                if tag == 1:
+                    offset += 1
+                else:
+                    break
+            if verbose: print(onset, offset)
+            sentence[onset:offset].add_label(flair_tag_type, value="term")
+    return sentence
+
+
+class TARSDataset(FlairDataset):
+    def __init__(self, data_dir):
+        self.data = [create_fsentence(sent) for sent in SentenceDataset(data_dir)]
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        return self.data[idx]

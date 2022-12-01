@@ -1,25 +1,24 @@
+from flair.data import Corpus, Dictionary
 from flair.models import TARSTagger
-from flair.data import Sentence
+from flair.trainers import ModelTrainer
 
-tag_type = "ner"
+import torch
 
-def create_fsentence(_input, verbose=False) -> Sentence:
-    tokens, *features, tags = _input
-    sentence = Sentence(" ".join(tokens))
-    if len(sentence) != len(tokens):
-        print("Trouble: ", sentence)
-        return sentence
-    for i, token in enumerate(tokens):
-        if tags[i] == 2:
-            continue
-        if tags[i] == 0:
-            onset = i
-            offset = i+1
-            for tag in tags[i+1:]:
-                if tag == 1:
-                    offset += 1 
-                else:
-                    break
-            if verbose: print(onset, offset)
-            sentence[onset:offset].add_label(tag_type, value="term")
-    return sentence
+flair_tag_type = 'ner'
+
+class TARSModel:
+    def __init__(self, corpus, *args, **kwargs):
+        self.dictionary = Dictionary()
+        self.dictionary.add_item('term')
+        self.tagger = TARSTagger.load('tars-ner')
+        self.corpus = Corpus(*corpus)
+        self.trainer = ModelTrainer(self.tagger, self.corpus)
+
+    def train(self):
+        self.tagger.add_and_switch_to_new_task(task_name='Term tagging', label_dictionary=self.dictionary, label_type=flair_tag_type)
+        self.trainer.train('output', optimizer=torch.optim.AdamW)
+
+    def predict(self):
+        pass
+        #tars.predict(sentence)
+        #print(sentence.to_tagged_string("ner"))

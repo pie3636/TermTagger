@@ -1,4 +1,6 @@
+flair=0.11.3
 gensim==4.2.0
 numpy==1.23.3
 scikit-learn==1.1.2
+torch==1.13.0
 tqdm

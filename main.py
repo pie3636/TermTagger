@@ -1,11 +1,14 @@
-from datasets import SentenceDataset, SlidingWindowDataset, WordDataset
-from models.svm import SupportVectorMachine
+from datasets import SentenceDataset, SlidingWindowDataset, TARSDataset, WordDataset
 from models.logregr import MyLogisticRegression
+from models.svm import SupportVectorMachine
+from models.tarstr import TARSModel
 from sklearn.metrics import classification_report
 
 import datasets
+import flair
 import gensim
 import numpy as np
+import torch
 import zipfile
 
 from tqdm import tqdm
@@ -22,6 +25,7 @@ Possible values:
 """
 features = ['POS', 'WL']
 
+#flair.device = torch.device('cpu')
 
 def get_embeds(dataset, embeds, single_pred=False):
     inputs = []
@@ -45,37 +49,43 @@ def get_embeds(dataset, embeds, single_pred=False):
 
 
 print('Reading embeddings')
-embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap='r')
-vector_size = embeds.vector_size
+# embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap='r')
+# vector_size = embeds.vector_size
 
 print('Loading and preparing dataset')
 
-train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, features=features)
-dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, features=features)
-test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, features=features)
+# train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, features=features)
+# dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, features=features)
+# test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, features=features)
 
+tars_train_set = TARSDataset('data/train')
+tars_dev_set = TARSDataset('data/dev')
+tars_test_set = TARSDataset('data/test')
 
-clfs = [
-        ('SVM', SupportVectorMachine()),
-        ('LR', MyLogisticRegression())
-]
+tars_model = TARSModel([tars_train_set, tars_dev_set, tars_test_set])
+tars_model.train()
+
+# clfs = [
+#         ('SVM', SupportVectorMachine()),
+#         ('LR', MyLogisticRegression())
+# ]
 
 print('Computing input embeddings')
-train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
+# train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
 
 print('Computing dev embeddings')
-dev_inputs, dev_outputs = get_embeds(dev_set, embeds, single_pred=True)
+# dev_inputs, dev_outputs = get_embeds(dev_set, embeds, single_pred=True)
 
-preds = []
-for name, clf in tqdm(clfs):
-    print(f'Training {name} model')
-    clf.train(train_inputs, train_outputs)
-    print(f'Computing {name} predictions')
-    preds.append(clf.predict(dev_inputs))
-
-dev_outputs = np.ravel(dev_outputs)
-
-for i, (name, _) in enumerate(clfs):
-    print(f'{name} results:')
-    print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
-
+# preds = []
+# for name, clf in tqdm(clfs):
+#     print(f'Training {name} model')
+#     clf.train(train_inputs, train_outputs)
+#     print(f'Computing {name} predictions')
+#     preds.append(clf.predict(dev_inputs))
+#
+# dev_outputs = np.ravel(dev_outputs)
+#
+# for i, (name, _) in enumerate(clfs):
+#     print(f'{name} results:')
+#r     print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
+#
