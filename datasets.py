@@ -50,8 +50,14 @@ class SentenceDataset(Dataset):
                         raise ClassmateError(f'Tag [repr({tag})] is a {type(tag)}', line, file, i)
                     if not tokens:
                         token = token.lower() # TODO: Improve (only lowercase non proper nouns)
-                    tokens.append(token)
-                    tags.append(tag2idx[tag])
+                    if token == "'s":
+                        token.append("'")
+                        token.append('s')
+                        tags.append(tag2idx[tag])
+                        tags.append(tag2idx[tag])
+                    else:
+                        tokens.append(token)
+                        tags.append(tag2idx[tag])
                 elif tokens:
                     data_to_add = [tokens, tags]
                     doc = nlp(' '.join(tokens))
