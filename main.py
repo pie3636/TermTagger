@@ -62,6 +62,12 @@ tars_train_set = TARSDataset('data/train')
 tars_dev_set = TARSDataset('data/dev')
 tars_test_set = TARSDataset('data/test')
 
+for sent in dev_set:
+    sent.remove_labels(tarstr.flair_tag_type)
+
+for sent in test_set:
+    sent.remove_labels(tarstr.flair_tag_type)
+
 tars_model = TARSModel([tars_train_set, tars_dev_set, tars_test_set])
 tars_model.train()
 
