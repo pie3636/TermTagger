@@ -8,7 +8,7 @@ flair_tag_type = 'ner'
 
 class TARSModel:
     def __init__(self, corpus, *args, **kwargs):
-        self.dictionary = Dictionary()
+        self.dictionary = Dictionary(add_unk=False)
         self.dictionary.add_item('term')
         self.tagger = TARSTagger.load('tars-ner')
         self.corpus = Corpus(*corpus)
@@ -19,6 +19,5 @@ class TARSModel:
         self.trainer.train('output', optimizer=torch.optim.AdamW)
 
     def predict(self):
-        pass
-        #tars.predict(sentence)
-        #print(sentence.to_tagged_string("ner"))
+        for sent in self.corpus.test:
+            tars.predict(sent)
