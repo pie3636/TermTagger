@@ -1,9 +1,11 @@
 from datasets import SentenceDataset, SlidingWindowDataset, TARSDataset, WordDataset
+from flair.data import Sentence
 from models.logregr import MyLogisticRegression
 from models.svm import SupportVectorMachine
-from models.tarstr import TARSModel
+from models.tarstr import TARSModel, flair_tag_type
 from sklearn.metrics import classification_report
 
+import copy
 import datasets
 import flair
 import gensim
@@ -61,15 +63,23 @@ print('Loading and preparing dataset')
 tars_train_set = TARSDataset('data/train')
 tars_dev_set = TARSDataset('data/dev')
 tars_test_set = TARSDataset('data/test')
+tars_test_set_eval = copy.deepcopy(tars_test_set)
 
-for sent in dev_set:
-    sent.remove_labels(tarstr.flair_tag_type)
+for sent in tars_dev_set:
+    sent.remove_labels(flair_tag_type)
 
-for sent in test_set:
-    sent.remove_labels(tarstr.flair_tag_type)
+for sent in tars_test_set:
+    sent.remove_labels(flair_tag_type)
 
-tars_model = TARSModel([tars_train_set, tars_dev_set, tars_test_set])
+tars_model = TARSModel([tars_train_set, [Sentence('')], [Sentence('')]])
 tars_model.train()
+
+for sent_pred, sent_true in zip(tars_test_set, tars_test_set_eval):
+    tars_model.predict(sent_pred)
+    print('Pred:', sent_pred)
+    print('True:', sent_true)
+    print('---')
+
 
 # clfs = [
 #         ('SVM', SupportVectorMachine()),

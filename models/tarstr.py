@@ -16,8 +16,7 @@ class TARSModel:
 
     def train(self):
         self.tagger.add_and_switch_to_new_task(task_name='Term tagging', label_dictionary=self.dictionary, label_type=flair_tag_type)
-        self.trainer.train('output', optimizer=torch.optim.AdamW, learning_rate=5e-6, max_epochs=3, embeddings_storage_mode="none", weight_decay=0)
+        self.trainer.train('output', optimizer=torch.optim.AdamW, learning_rate=5e-6, max_epochs=3, embeddings_storage_mode="none", weight_decay=0, mini_batch_size=16, mini_batch_chunk_size=4)
 
-    def predict(self):
-        for sent in self.corpus.test:
-            tars.predict(sent)
+    def predict(self, sent):
+        self.tagger.predict(sent)
