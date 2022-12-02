@@ -97,11 +97,11 @@ tars_model = TARSModel([tars_train_set, [Sentence('')], [Sentence('')]])
 tars_model.train()
 
 print('Computing TARS predictions')
-all_preds = []
+all_pred = []
 all_true = []
 for sent_pred, sent_true in zip(tars_test_set, tars_test_set_eval):
     tars_model.predict(sent_pred)
-    all_preds.extend(convert_span_into_iob(sent_pred))
+    all_pred.extend(convert_span_into_iob(sent_pred))
     all_true.extend(convert_span_into_iob(sent_true))
 
 # for i, (name, _) in enumerate(clfs):
