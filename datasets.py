@@ -57,12 +57,12 @@ class SentenceDataset(Dataset):
                         tokens.append("'")
                         tokens.append('s')
                         tags.append(tag2idx[tag])
-                        tags.append(tag2idx[tag])
+                        tags.append(tag2idx[tag if tag != 'B' else 'I'])
                     elif token.endswith('-') and token != '-':
                         tokens.append(token[:-1])
                         tokens.append('-')
                         tags.append(tag2idx[tag])
-                        tags.append(tag2idx[tag])
+                        tags.append(tag2idx[tag if tag != 'B' else 'I'])
                     else:
                         tokens.append(token)
                         tags.append(tag2idx[tag])
