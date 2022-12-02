@@ -61,16 +61,16 @@ print('Loading and preparing datasets')
 # dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, features=features)
 # test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, features=features)
 
+tars_train_set = TARSDataset('data/train')
+tars_dev_set = TARSDataset('data/dev')
+tars_test_set = TARSDataset('data/test')
+tars_test_set_eval = copy.deepcopy(tars_test_set)
+
 for sent in tars_dev_set:
     sent.remove_labels(flair_tag_type)
 
 for sent in tars_test_set:
     sent.remove_labels(flair_tag_type)
-
-tars_train_set = TARSDataset('data/train')
-tars_dev_set = TARSDataset('data/dev')
-tars_test_set = TARSDataset('data/test')
-tars_test_set_eval = copy.deepcopy(tars_test_set)
 
 # clfs = [
 #         ('SVM', SupportVectorMachine()),
