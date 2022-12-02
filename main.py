@@ -1,4 +1,5 @@
 from datasets import SentenceDataset, SlidingWindowDataset, TARSDataset, WordDataset
+from evaluation import convert_span_into_iob
 from flair.data import Sentence
 from models.logregr import MyLogisticRegression
 from models.svm import SupportVectorMachine
@@ -54,16 +55,11 @@ print('Reading embeddings')
 # embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap='r')
 # vector_size = embeds.vector_size
 
-print('Loading and preparing dataset')
+print('Loading and preparing datasets')
 
 # train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, features=features)
 # dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, features=features)
 # test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, features=features)
-
-tars_train_set = TARSDataset('data/train')
-tars_dev_set = TARSDataset('data/dev')
-tars_test_set = TARSDataset('data/test')
-tars_test_set_eval = copy.deepcopy(tars_test_set)
 
 for sent in tars_dev_set:
     sent.remove_labels(flair_tag_type)
@@ -71,15 +67,10 @@ for sent in tars_dev_set:
 for sent in tars_test_set:
     sent.remove_labels(flair_tag_type)
 
-tars_model = TARSModel([tars_train_set, [Sentence('')], [Sentence('')]])
-tars_model.train()
-
-for sent_pred, sent_true in zip(tars_test_set, tars_test_set_eval):
-    tars_model.predict(sent_pred)
-    print('Pred:', sent_pred)
-    print('True:', sent_true)
-    print('---')
-
+tars_train_set = TARSDataset('data/train')
+tars_dev_set = TARSDataset('data/dev')
+tars_test_set = TARSDataset('data/test')
+tars_test_set_eval = copy.deepcopy(tars_test_set)
 
 # clfs = [
 #         ('SVM', SupportVectorMachine()),
@@ -100,8 +91,23 @@ print('Computing dev embeddings')
 #     preds.append(clf.predict(dev_inputs))
 #
 # dev_outputs = np.ravel(dev_outputs)
-#
+
+print('Training few-shot TARS model')
+tars_model = TARSModel([tars_train_set, [Sentence('')], [Sentence('')]])
+tars_model.train()
+
+print('Computing TARS predictions')
+all_preds = []
+all_true = []
+for sent_pred, sent_true in zip(tars_test_set, tars_test_set_eval):
+    tars_model.predict(sent_pred)
+    all_preds.extend(convert_span_into_iob(sent_pred))
+    all_true.extend(convert_span_into_iob(sent_true))
+
 # for i, (name, _) in enumerate(clfs):
 #     print(f'{name} results:')
-#r     print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
+#     print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
 #
+
+print('TARS results:')
+print(classification_report(all_true, all_pred, digits=4, zero_division=0))
