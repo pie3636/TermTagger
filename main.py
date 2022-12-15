@@ -52,14 +52,14 @@ def get_embeds(dataset, embeds, single_pred=False):
 
 
 print('Reading embeddings')
-# embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap='r')
-# vector_size = embeds.vector_size
+embeds = gensim.models.KeyedVectors.load('embeds/english_fasttext_2017_10', mmap='r')
+vector_size = embeds.vector_size
 
 print('Loading and preparing datasets')
 
-# train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, features=features)
-# dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, features=features)
-# test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, features=features)
+train_set = SlidingWindowDataset('data/train', WINDOW_SIZE, uncap_first=True, features=features)
+dev_set = SlidingWindowDataset('data/dev', WINDOW_SIZE, uncap_first=True, features=features)
+test_set = SlidingWindowDataset('data/test', WINDOW_SIZE, uncap_first=True, features=features)
 
 tars_train_set = TARSDataset('data/train')
 tars_dev_set = TARSDataset('data/dev')
@@ -72,25 +72,25 @@ for sent in tars_dev_set:
 for sent in tars_test_set:
     sent.remove_labels(flair_tag_type)
 
-# clfs = [
-#         ('SVM', SupportVectorMachine()),
-#         ('LR', MyLogisticRegression())
-# ]
+clfs = [
+        ('SVM', SupportVectorMachine()),
+        ('LR', MyLogisticRegression())
+]
 
 print('Computing input embeddings')
-# train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
+train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
 
 print('Computing dev embeddings')
-# dev_inputs, dev_outputs = get_embeds(dev_set, embeds, single_pred=True)
+dev_inputs, dev_outputs = get_embeds(dev_set, embeds, single_pred=True)
 
-# preds = []
-# for name, clf in tqdm(clfs):
-#     print(f'Training {name} model')
-#     clf.train(train_inputs, train_outputs)
-#     print(f'Computing {name} predictions')
-#     preds.append(clf.predict(dev_inputs))
-#
-# dev_outputs = np.ravel(dev_outputs)
+preds = []
+for name, clf in tqdm(clfs):
+    print(f'Training {name} model')
+    clf.train(train_inputs, train_outputs)
+    print(f'Computing {name} predictions')
+    preds.append(clf.predict(dev_inputs))
+
+dev_outputs = np.ravel(dev_outputs)
 
 print('Training few-shot TARS model')
 tars_model = TARSModel([tars_train_set, [Sentence('')], [Sentence('')]])
@@ -104,10 +104,10 @@ for sent_pred, sent_true in zip(tars_test_set, tars_test_set_eval):
     all_pred.extend(convert_span_into_iob(sent_pred))
     all_true.extend(convert_span_into_iob(sent_true))
 
-# for i, (name, _) in enumerate(clfs):
-#     print(f'{name} results:')
-#     print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
-#
+for i, (name, _) in enumerate(clfs):
+    print(f'{name} results:')
+    print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
+
 
 print('TARS results:')
 print(classification_report(all_true, all_pred, digits=4, zero_division=0))
