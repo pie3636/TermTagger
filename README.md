@@ -7,7 +7,7 @@
 - The full training and inference process can be triggered by running `main.py`.
 - Alternatively, `sandbox.py` can be run as a standalone program to play with TARS' capabilities.
 
-**Warning:** TARS requires a lot of VRAM for both training and inference. We recommend using Grid5k or any other similar resource.
+**Warning:** TARS requires a lot of VRAM for training. We recommend using Grid5k or any other similar resource. However, inference can be performed using common resources such as a personal computer or laptop.
 
 ## Results
 
