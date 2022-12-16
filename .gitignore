@@ -1,5 +1,6 @@
 __pycache__/
 embeds/*
+output/final-model.pt
 !*/.gitkeep
 *.swp
 
