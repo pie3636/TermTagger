@@ -1,5 +1,5 @@
-from datasets import SentenceDataset, SlidingWindowDataset, TARSDataset, WordDataset
-from evaluation import convert_span_into_iob, get_span_based_scores, tag2idx
+from datasets import SentenceDataset, SlidingWindowDataset, tag2idx, TARSDataset, WordDataset
+from evaluation import convert_span_into_iob, get_span_based_scores
 from flair.data import Sentence
 from models.logregr import MyLogisticRegression
 from models.svm import SupportVectorMachine
@@ -11,6 +11,7 @@ import datasets
 import flair
 import gensim
 import numpy as np
+import pickle
 import torch
 import zipfile
 
@@ -89,6 +90,8 @@ for name, clf in tqdm(clfs):
     clf.train(train_inputs, train_outputs)
     print(f'Computing {name} predictions')
     preds.append(clf.predict(dev_inputs))
+    with open(f'output{name.lower()}.pkl', 'wb') as f:
+        pickle.dump(clf.classifier, f)
 
 dev_outputs = np.ravel(dev_outputs)
 
