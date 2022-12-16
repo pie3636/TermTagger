@@ -1,5 +1,7 @@
 # TermTagger
 
+Developed by Maxime Méloux and Van Duy Ngo for the Terminology class of the NLP Master in IDMC, Nancy.
+
 ## Usage instructions
 
 - Install the required packages by using `pip install -r requirements.txt` and `python -m spacy download en_core_web_sm`.
