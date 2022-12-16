@@ -7,3 +7,7 @@
 - Run `main.py` to start the training and execution process.
 
 **Warning:** TARS requires a lot of VRAM for both training and inference. We recommend using Grid5k or any other similar resource.
+
+## Results
+
+The results of running the fine-tuned TARS tagger on the test set can be found in `output/tars_results.txt`.

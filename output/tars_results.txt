@@ -1,0 +1,154 @@
+In each pair of sentences, the first sentence is the reference one, and the second one is the one annotated by TARS.
+
+Sentence: "translation models used for statistical machine translation are compiled from parallel corpora that are manually translated ." → ["translation models"/term, "statistical machine translation"/term, "parallel corpora"/term, "manually translated"/term]
+Sentence: "translation models used for statistical machine translation are compiled from parallel corpora that are manually translated ." → ["translation models"/term, "statistical machine translation"/term, "corpora"/term]
+
+Sentence: "the common assumption is that parallel texts are symmetrical : The direction of translation is deemed irrelevant and is consequently ignored ." → ["parallel texts"/term]
+Sentence: "the common assumption is that parallel texts are symmetrical : The direction of translation is deemed irrelevant and is consequently ignored ." → ["parallel texts"/term]
+
+Sentence: "much research in Translation Studies indicates that the direction of translation matters , however , as translated language ( translationese ) has many unique properties ." → ["translationese"/term]
+Sentence: "much research in Translation Studies indicates that the direction of translation matters , however , as translated language ( translationese ) has many unique properties ." → ["Translation Studies"/term, "translation"/term, "translated language"/term, "translationese"/term]
+
+Sentence: "it has already been shown that phrase tables constructed from parallel corpora translated in the same direction as the translation task outperform those constructed from corpora translated in the opposite direction ." → ["phrase tables"/term, "parallel corpora"/term, "translation task"/term, "corpora"/term]
+Sentence: "it has already been shown that phrase tables constructed from parallel corpora translated in the same direction as the translation task outperform those constructed from corpora translated in the opposite direction ." → ["phrase tables"/term, "parallel corpora"/term, "translation task"/term, "corpora"/term]
+
+Sentence: "we reconfirm that this is indeed the case , but emphasize the importance of also using texts translated in the “ wrong ” direction ."
+Sentence: "we reconfirm that this is indeed the case , but emphasize the importance of also using texts translated in the “ wrong ” direction ."
+
+Sentence: "we take advantage of information pertaining to the direction of translation in constructing phrase tables by adapting the translation model to the special properties of translationese ." → ["phrase tables"/term, "translation model"/term, "translationese"/term]
+Sentence: "we take advantage of information pertaining to the direction of translation in constructing phrase tables by adapting the translation model to the special properties of translationese ." → ["translation"/term, "phrase tables"/term, "translation model"/term, "translationese"/term]
+
+Sentence: "we explore two adaptation techniques : First , we create a mixture model by interpolating phrase tables trained on texts translated in the “ right ” and the “ wrong ” directions ." → ["model"/term, "phrase tables"/term]
+Sentence: "we explore two adaptation techniques : First , we create a mixture model by interpolating phrase tables trained on texts translated in the “ right ” and the “ wrong ” directions ." → ["adaptation techniques"/term, "mixture model"/term, "phrase tables"/term]
+
+Sentence: "the weights for the interpolation are determined by minimizing perplexity ." → ["weights"/term, "perplexity"/term]
+Sentence: "the weights for the interpolation are determined by minimizing perplexity ." → ["interpolation"/term]
+
+Sentence: "second , we define entropy - based measures that estimate the correspondence of target - language phrases to translationese , thereby eliminating the need to annotate the parallel corpus with information pertaining to the direction of translation ." → ["entropy - based measures"/term, "translationese"/term, "annotate"/term, "parallel corpus"/term]
+Sentence: "second , we define entropy - based measures that estimate the correspondence of target - language phrases to translationese , thereby eliminating the need to annotate the parallel corpus with information pertaining to the direction of translation ." → ["entropy - based measures"/term, "target - language phrases"/term, "translationese"/term, "translation"/term]
+
+Sentence: "we show that incorporating these measures as features in the phrase tables of statistical machine translation systems results in consistent , statistically significant improvement in the quality of the translation ." → ["phrase tables"/term, "statistical machine translation"/term, "statistically significant"/term]
+Sentence: "we show that incorporating these measures as features in the phrase tables of statistical machine translation systems results in consistent , statistically significant improvement in the quality of the translation ." → ["phrase tables"/term, "statistical machine translation systems"/term, "translation"/term]
+
+Sentence: "we present a statistical parsing framework for sentence - level sentiment classification in this article ." → ["statistical parsing framework"/term, "sentence"/term, "sentiment classification"/term]
+Sentence: "we present a statistical parsing framework for sentence - level sentiment classification in this article ." → ["statistical parsing framework"/term, "sentence - level sentiment classification"/term]
+
+Sentence: "unlike previous works that use syntactic parsing results for sentiment analysis , we develop a statistical parser to directly analyze the sentiment structure of a sentence ." → ["syntactic parsing"/term, "sentiment analysis"/term, "statistical parser"/term, "sentiment structure"/term, "sentence"/term]
+Sentence: "unlike previous works that use syntactic parsing results for sentiment analysis , we develop a statistical parser to directly analyze the sentiment structure of a sentence ." → ["syntactic parsing results"/term, "sentiment analysis"/term, "statistical parser"/term, "sentiment structure"/term]
+
+Sentence: "we show that complicated phenomena in sentiment analysis ( e.g. , negation , intensification , and contrast ) can be handled the same way as simple and straightforward sentiment expressions in a unified and probabilistic way ." → ["sentiment analysis"/term, "negation"/term, "intensification"/term, "sentiment expressions"/term]
+Sentence: "we show that complicated phenomena in sentiment analysis ( e.g. , negation , intensification , and contrast ) can be handled the same way as simple and straightforward sentiment expressions in a unified and probabilistic way ." → ["sentiment analysis"/term, "negation"/term, "intensification"/term, "contrast"/term, "sentiment expressions"/term, "probabilistic"/term]
+
+Sentence: "we formulate the sentiment grammar upon Context - Free Grammars ( CFGs ) , and provide a formal description of the sentiment parsing framework ." → ["sentiment grammar"/term, "Context - Free Grammars"/term, "CFGs"/term, "sentiment parsing framework"/term]
+Sentence: "we formulate the sentiment grammar upon Context - Free Grammars ( CFGs ) , and provide a formal description of the sentiment parsing framework ." → ["sentiment grammar"/term, "Context - Free Grammars"/term, "CFGs"/term, "sentiment parsing framework"/term]
+
+Sentence: "we develop the parsing model to obtain possible sentiment parse trees for a sentence , from which the polarity model is proposed to derive the sentiment strength and polarity , and the ranking model is dedicated to selecting the best sentiment tree ." → ["parsing model"/term, "sentiment parse trees"/term, "polarity model"/term, "sentiment strength"/term, "sentiment tree"/term]
+Sentence: "we develop the parsing model to obtain possible sentiment parse trees for a sentence , from which the polarity model is proposed to derive the sentiment strength and polarity , and the ranking model is dedicated to selecting the best sentiment tree ." → ["parsing model"/term, "sentiment parse trees"/term, "polarity model"/term, "sentiment strength"/term, "polarity"/term, "ranking model"/term, "sentiment tree"/term]
+
+Sentence: "we train the parser directly from examples of sentences annotated only with sentiment polarity labels but without any syntactic annotations or polarity annotations of constituents within sentences ." → ["train"/term, "parser"/term, "annotated"/term, "sentiment polarity labels"/term, "syntactic annotations"/term, "polarity annotations"/term, "sentences"/term]
+Sentence: "we train the parser directly from examples of sentences annotated only with sentiment polarity labels but without any syntactic annotations or polarity annotations of constituents within sentences ." → ["parser"/term, "sentiment polarity labels"/term, "syntactic annotations"/term, "polarity annotations"/term, "constituents"/term]
+
+Sentence: "therefore we can obtain training data easily ." → ["training data"/term]
+Sentence: "therefore we can obtain training data easily ." → ["training data"/term]
+
+Sentence: "in particular , we train a sentiment parser , s.parser , from a large amount of review sentences with users ' ratings as rough sentiment polarity labels ." → ["train"/term, "sentiment parser"/term, "s.parser"/term, "sentences"/term, "sentiment polarity labels"/term]
+Sentence: "in particular , we train a sentiment parser , s.parser , from a large amount of review sentences with users ' ratings as rough sentiment polarity labels ." → ["sentiment parser"/term, "s.parser"/term, "review sentences"/term, "sentiment polarity labels"/term]
+
+Sentence: "orthographic similarities across languages provide a strong signal for unsupervised probabilistic transduction ( decipherment ) for closely related language pairs ." → ["orthographic similarities"/term, "unsupervised probabilistic transduction"/term, "decipherment"/term, "related language pairs"/term]
+Sentence: "orthographic similarities across languages provide a strong signal for unsupervised probabilistic transduction ( decipherment ) for closely related language pairs ." → ["orthographic similarities"/term, "languages"/term, "unsupervised probabilistic transduction"/term, "decipherment"/term, "language pairs"/term]
+
+Sentence: "the existing decipherment models , however , are not well suited for exploiting these orthographic similarities ." → ["decipherment models"/term, "orthographic similarities"/term]
+Sentence: "the existing decipherment models , however , are not well suited for exploiting these orthographic similarities ." → ["decipherment models"/term, "orthographic similarities"/term]
+
+Sentence: "we propose a log - linear model with latent variables that incorporates orthographic similarity features ." → ["log - linear model"/term, "latent variables"/term, "orthographic similarity features"/term]
+Sentence: "we propose a log - linear model with latent variables that incorporates orthographic similarity features ." → ["log - linear model"/term, "latent variables"/term, "orthographic similarity features"/term]
+
+Sentence: "maximum likelihood training is computationally expensive for the proposed log - linear model ." → ["maximum likelihood training"/term, "computationally expensive"/term, "log - linear model"/term]
+Sentence: "maximum likelihood training is computationally expensive for the proposed log - linear model ." → ["maximum likelihood training"/term, "computationally expensive"/term, "log - linear model"/term]
+
+Sentence: "to address this challenge , we perform approximate inference via Markov chain Monte Carlo sampling and contrastive divergence ." → ["approximate inference"/term, "Markov chain Monte Carlo sampling"/term, "contrastive divergence"/term]
+Sentence: "to address this challenge , we perform approximate inference via Markov chain Monte Carlo sampling and contrastive divergence ." → ["approximate inference"/term, "Markov chain Monte Carlo sampling"/term, "contrastive divergence"/term]
+
+Sentence: "our results show that the proposed log - linear model with contrastive divergence outperforms the existing generative decipherment models by exploiting the orthographic features ." → ["log - linear model"/term, "contrastive divergence"/term, "generative decipherment models"/term, "orthographic features"/term]
+Sentence: "our results show that the proposed log - linear model with contrastive divergence outperforms the existing generative decipherment models by exploiting the orthographic features ." → ["log - linear model"/term, "contrastive divergence"/term, "generative decipherment models"/term, "orthographic features"/term]
+
+Sentence: "the model both scales to large vocabularies and preserves accuracy in low - and no - resource contexts ." → ["accuracy"/term, "low - and no - resource contexts"/term]
+Sentence: "the model both scales to large vocabularies and preserves accuracy in low - and no - resource contexts ." → ["vocabularies"/term]
+
+Sentence: "recent work in natural language generation has begun to take linguistic variation into account , developing algorithms that are capable of modifying the system ' s linguistic style based either on the user ' s linguistic style or other factors , such as personality or politeness ." → ["natural language generation"/term, "linguistic variation"/term, "algorithms"/term, "linguistic style"/term, "linguistic style"/term]
+Sentence: "recent work in natural language generation has begun to take linguistic variation into account , developing algorithms that are capable of modifying the system ' s linguistic style based either on the user ' s linguistic style or other factors , such as personality or politeness ." → ["natural language generation"/term, "linguistic variation"/term, "algorithms"/term, "linguistic style"/term, "linguistic style"/term]
+
+Sentence: "while stylistic control has traditionally relied on handcrafted rules , statistical methods are likely to be needed for generation systems to scale to the production of the large range of variation observed in human dialogues ." → ["stylistic control"/term, "statistical methods"/term, "generation systems"/term]
+Sentence: "while stylistic control has traditionally relied on handcrafted rules , statistical methods are likely to be needed for generation systems to scale to the production of the large range of variation observed in human dialogues ." → ["stylistic control"/term, "rules"/term, "statistical methods"/term, "generation systems"/term]
+
+Sentence: "previous work on statistical natural language generation ( SNLG ) has shown that the grammaticality and naturalness of generated utterances can be optimized from data ; however these data - driven methods have not been shown to produce stylistic variation that is perceived by humans in the way that the system intended ." → ["statistical natural language generation"/term, "SNLG"/term, "grammaticality"/term, "naturalness"/term, "utterances"/term, "stylistic variation"/term]
+Sentence: "previous work on statistical natural language generation ( SNLG ) has shown that the grammaticality and naturalness of generated utterances can be optimized from data ; however these data - driven methods have not been shown to produce stylistic variation that is perceived by humans in the way that the system intended ." → ["statistical natural language generation"/term, "SNLG"/term, "grammaticality"/term, "generated utterances"/term, "data -"/term, "stylistic variation"/term]
+
+Sentence: "this paper describes Personage , a highly parameterizable language generator whose parameters are based on psychological findings about the linguistic reflexes of personality ." → ["Personage"/term, "parameterizable"/term, "language generator"/term, "parameters"/term, "linguistic reflexes"/term]
+Sentence: "this paper describes Personage , a highly parameterizable language generator whose parameters are based on psychological findings about the linguistic reflexes of personality ." → ["Personage"/term, "parameterizable language generator"/term, "parameters"/term, "linguistic reflexes"/term]
+
+Sentence: "we present a novel SNLG method which uses parameter estimation models trained on personality - annotated data to predict the generation decisions required to convey any combination of scalar values along the five main dimensions of personality ." → ["SNLG"/term, "parameter estimation models"/term, "generation decisions"/term]
+Sentence: "we present a novel SNLG method which uses parameter estimation models trained on personality - annotated data to predict the generation decisions required to convey any combination of scalar values along the five main dimensions of personality ." → ["SNLG"/term, "parameter estimation models"/term, "personality - annotated data"/term, "generation decisions"/term, "scalar values"/term]
+
+Sentence: "systems based on synchronous grammars and tree transducers promise to improve the quality of statistical machine translation output , but are often very computationally intensive ." → ["synchronous grammars"/term, "tree"/term, "transducers"/term, "statistical machine translation output"/term, "computationally"/term]
+Sentence: "systems based on synchronous grammars and tree transducers promise to improve the quality of statistical machine translation output , but are often very computationally intensive ." → ["synchronous grammars"/term, "tree transducers"/term, "statistical machine translation"/term, "computationally intensive"/term]
+
+Sentence: "the complexity is exponential in the size of individual grammar rules due to arbitrary re orderings between the two languages ." → ["complexity"/term, "exponential"/term, "grammar rules"/term, "arbitrary"/term]
+Sentence: "the complexity is exponential in the size of individual grammar rules due to arbitrary re orderings between the two languages ." → ["grammar rules"/term, "orderings"/term]
+
+Sentence: "we develop a theory of binarization for synchronous context free grammars and present a linear time algorithm for binarizing synchronous rules when possible ." → ["binarization"/term, "synchronous context free grammars"/term, "linear time algorithm"/term, "binarizing"/term, "synchronous rules"/term]
+Sentence: "we develop a theory of binarization for synchronous context free grammars and present a linear time algorithm for binarizing synchronous rules when possible ." → ["binarization"/term, "synchronous context free grammars"/term, "linear time algorithm"/term, "binarizing"/term, "synchronous rules"/term]
+
+Sentence: "in our large scale experiments , we found that almost all rules are binarizable and the resulting binarized rule set significantly improves the speed and accuracy of a state of the art syntax based machine translation system ." → ["binarizable"/term, "binarized rule"/term, "speed"/term, "accuracy"/term, "syntax"/term, "machine translation system"/term]
+Sentence: "in our large scale experiments , we found that almost all rules are binarizable and the resulting binarized rule set significantly improves the speed and accuracy of a state of the art syntax based machine translation system ." → ["binarizable"/term, "binarized rule set"/term, "syntax based"/term, "machine translation system"/term]
+
+Sentence: "we present algorithms for extracting Hyperedge Replacement Grammar ( HRG ) rules from a graph along with a vertex order ." → ["Hyperedge Replacement Grammar"/term, "graph"/term, "vertex order"/term]
+Sentence: "we present algorithms for extracting Hyperedge Replacement Grammar ( HRG ) rules from a graph along with a vertex order ." → ["Hyperedge Replacement Grammar"/term, "HRG"/term, "rules"/term, "vertex order"/term]
+
+Sentence: "our algorithms are based on finding a tree decomposition of smallest width , relative to the vertex order , and then extracting one rule for each node in this structure ." → ["vertex order"/term, "node"/term]
+Sentence: "our algorithms are based on finding a tree decomposition of smallest width , relative to the vertex order , and then extracting one rule for each node in this structure ." → ["tree decomposition"/term, "vertex order"/term]
+
+Sentence: "the assumption of a fixed order for the vertices of the input graph makes it possible to solve the problem in polynomial time , in contrast to the fact that the problem of finding optimal tree decompositions for a graph is NP - hard . We also present polynomial - time algorithms for parsing based on our HRGs , where the input is a vertex sequence and the output is a graph structure ." → ["fixed order"/term, "vertices"/term, "polynomial time"/term, "optimal tree decompositions"/term, "NP - hard"/term, "polynomial - time algorithms"/term, "HRGs"/term, "vertex sequence"/term, "graph structure"/term]
+Sentence: "the assumption of a fixed order for the vertices of the input graph makes it possible to solve the problem in polynomial time , in contrast to the fact that the problem of finding optimal tree decompositions for a graph is NP - hard . We also present polynomial - time algorithms for parsing based on our HRGs , where the input is a vertex sequence and the output is a graph structure ." → ["fixed order"/term, "input graph"/term, "polynomial time"/term, "tree decompositions"/term, "graph"/term, "NP - hard"/term, "polynomial - time algorithms"/term, "parsing"/term, "HRGs"/term, "vertex sequence"/term, "graph structure"/term]
+
+Sentence: "the intended application of our algorithms is grammar extraction and parsing for semantic representation of natural language ." → ["semantic representation"/term, "natural language"/term]
+Sentence: "the intended application of our algorithms is grammar extraction and parsing for semantic representation of natural language ." → ["algorithms"/term, "grammar extraction"/term, "parsing"/term, "semantic representation"/term, "natural language"/term]
+
+Sentence: "although there has been much work in recent years on data - driven natural language generation , little attention has been paid to the fine - grained interactions that arise during microplanning between aggregation , surface realization , and sentence segmentation ." → ["data - driven"/term, "natural language generation"/term, "fine - grained interactions"/term, "microplanning"/term, "aggregation"/term, "surface realization"/term, "sentence segmentation"/term]
+Sentence: "although there has been much work in recent years on data - driven natural language generation , little attention has been paid to the fine - grained interactions that arise during microplanning between aggregation , surface realization , and sentence segmentation ." → ["data - driven natural language generation"/term, "fine - grained interactions"/term, "microplanning"/term, "aggregation"/term, "surface realization"/term, "sentence segmentation"/term]
+
+Sentence: "in this article , we propose a hybrid symbolic / statistical approach to jointly model the constraints regulating these interactions ." → ["hybrid symbolic / statistical approach"/term, "model the constraints"/term]
+Sentence: "in this article , we propose a hybrid symbolic / statistical approach to jointly model the constraints regulating these interactions ." → ["/ statistical approach"/term]
+
+Sentence: "our approach integrates a small handwritten grammar , a statistical hypertagger , and a surface realization algorithm ." → ["grammar"/term, "statistical hypertagger"/term, "surface realization algorithm"/term]
+Sentence: "our approach integrates a small handwritten grammar , a statistical hypertagger , and a surface realization algorithm ." → ["handwritten grammar"/term, "statistical hypertagger"/term, "surface realization algorithm"/term]
+
+Sentence: "it is applied to the verbalization of knowledge base queries and tested on 13 knowledge bases to demonstrate domain independence ." → ["verbalization"/term, "knowledge base queries"/term, "tested"/term, "knowledge bases"/term, "domain independence"/term]
+Sentence: "it is applied to the verbalization of knowledge base queries and tested on 13 knowledge bases to demonstrate domain independence ." → ["knowledge base queries"/term, "knowledge bases"/term, "domain independence"/term]
+
+Sentence: "we evaluate our approach in several ways ." → ["evaluate our approach"/term]
+Sentence: "we evaluate our approach in several ways ."
+
+Sentence: "a quantitative analysis shows that the hybrid approach outperforms a purely symbolic approach in terms of both speed and coverage ." → ["quantitative analysis"/term, "hybrid approach"/term, "outperforms"/term, "symbolic approach"/term]
+Sentence: "a quantitative analysis shows that the hybrid approach outperforms a purely symbolic approach in terms of both speed and coverage ." → ["quantitative analysis"/term, "hybrid approach"/term, "approach"/term]
+
+Sentence: "results from a human study indicate that users find the output of this hybrid statistic / symbolic system more fluent than both a template - based and a purely symbolic grammar based approach ." → ["hybrid statistic / symbolic"/term, "template - based"/term, "grammar based approach"/term]
+Sentence: "results from a human study indicate that users find the output of this hybrid statistic / symbolic system more fluent than both a template - based and a purely symbolic grammar based approach ." → ["hybrid statistic / symbolic system"/term, "template - based"/term, "symbolic grammar"/term]
+
+Sentence: "weighted deduction systems provide a framework for describing parsing algorithms that can be used with a variety of operations for combining the values of partial derivations ." → ["weighted deduction systems"/term, "framework"/term, "parsing algorithms"/term, "operations"/term, "partial derivations"/term]
+Sentence: "weighted deduction systems provide a framework for describing parsing algorithms that can be used with a variety of operations for combining the values of partial derivations ." → ["weighted deduction systems"/term, "parsing algorithms"/term, "partial derivations"/term]
+
+Sentence: "for some operations , inside values can be computed efficiently , but outside values can not ." → ["operations"/term, "inside values"/term, "outside values"/term]
+Sentence: "for some operations , inside values can be computed efficiently , but outside values can not ." → ["inside values"/term, "outside values"/term]
+
+Sentence: "we view out - side values as functions from inside values to the total value of all derivations , and we analyze outside computation in terms of function composition ." → ["out - side values"/term, "inside values"/term, "total value"/term, "derivations"/term, "outside computation"/term, "function composition"/term]
+Sentence: "we view out - side values as functions from inside values to the total value of all derivations , and we analyze outside computation in terms of function composition ." → ["out - side values"/term, "derivations"/term, "function composition"/term]
+
+Sentence: "in this work , we present a phenomenon - oriented comparative analysis of the two dominant approaches in English Resource Semantic ( ERS ) parsing : classic , knowledge - intensive and neural , data - intensive models ." → ["oriented comparative analysis"/term, "English Resource Semantic"/term, "ERS"/term, "parsing"/term, "knowledge - intensive"/term, "neural"/term, "data - intensive models"/term]
+Sentence: "in this work , we present a phenomenon - oriented comparative analysis of the two dominant approaches in English Resource Semantic ( ERS ) parsing : classic , knowledge - intensive and neural , data - intensive models ." → ["phenomenon - oriented"/term, "analysis"/term, "English Resource Semantic"/term, "ERS"/term, "parsing"/term, "classic"/term, "knowledge - intensive"/term, "neural"/term, "data - intensive models"/term]
+
+Sentence: "to reflect state - of - the - art neural NLP technologies , a factorization - based parser is introduced that can produce Elementary Dependency Structures much more accurately than previous data - driven parsers ." → ["state - of - the - art"/term, "neural NLP technologies"/term, "factorization - based"/term, "parser"/term, "data - driven parsers"/term]
+Sentence: "to reflect state - of - the - art neural NLP technologies , a factorization - based parser is introduced that can produce Elementary Dependency Structures much more accurately than previous data - driven parsers ." → ["neural NLP"/term, "factorization -"/term, "parser"/term, "Elementary Dependency Structures"/term, "data - driven"/term]
+
+Sentence: "we conduct a suite of tests for different linguistic phenomena to analyze the grammatical competence of different parsers , where we show that , despite comparable performance overall , knowledge - and data - intensive models produce different types of errors , in a way that can be explained by their theoretical properties ." → ["grammatical"/term, "parsers"/term, "data - intensive models"/term]
+Sentence: "we conduct a suite of tests for different linguistic phenomena to analyze the grammatical competence of different parsers , where we show that , despite comparable performance overall , knowledge - and data - intensive models produce different types of errors , in a way that can be explained by their theoretical properties ." → ["linguistic phenomena"/term, "grammatical competence"/term, "parsers"/term, "data - intensive models"/term, "properties"/term]
