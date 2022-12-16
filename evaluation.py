@@ -29,5 +29,19 @@ def get_spans_from_iobs(tags:list, verbose=False):
                 else:
                     break
             if verbose: print(onset, offset)
-            spans.append([onset,offset])
+            spans.append((onset,offset))
     return spans
+
+
+def get_span_based_scores(hyps, refs):
+    h_spans = set(get_spans_from_iobs(hyps))
+    r_spans = set(get_spans_from_iobs(refs))
+    intersec = h_spans.intersection(r_spans)
+    p = len(intersec)/len(h_spans)
+    r = len(intersec)/len(r_spans)
+    f1 = (2*p*r)/(p+r)
+    return p, r, f1
+
+
+
+
