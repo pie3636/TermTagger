@@ -84,16 +84,19 @@ train_inputs, train_outputs = get_embeds(train_set, embeds, single_pred=True)
 print('Computing dev embeddings')
 dev_inputs, dev_outputs = get_embeds(dev_set, embeds, single_pred=True)
 
+print('Computing test embeddings')
+test_inputs, test_outputs = get_embeds(test_set, embeds, single_pred=True)
+
 preds = []
 for name, clf in tqdm(clfs):
     print(f'Training {name} model')
     clf.train(train_inputs, train_outputs)
     print(f'Computing {name} predictions')
-    preds.append(clf.predict(dev_inputs))
-    with open(f'output{name.lower()}.pkl', 'wb') as f:
+    preds.append(clf.predict(test_inputs))
+    with open(f'output/{name.lower()}.pkl', 'wb') as f:
         pickle.dump(clf.classifier, f)
 
-dev_outputs = np.ravel(dev_outputs)
+test_outputs = np.ravel(test_outputs)
 
 print('Training few-shot TARS model')
 tars_model = TARSModel([tars_train_set, [Sentence('')], [Sentence('')]])
@@ -109,8 +112,8 @@ for sent_pred, sent_true in zip(tars_test_set, tars_test_set_eval):
 
 for i, (name, _) in enumerate(clfs):
     print(f'{name} results:')
-    print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
-    precision, recall, f1score = get_span_based_scores(preds[i], dev_outputs)
+    print(classification_report(test_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
+    precision, recall, f1score = get_span_based_scores(preds[i], test_outputs)
     print(f'[Span-based] Precision: {precision:.4f}, recall: {recall:.4f}, F-score: {f1score:.4f}')
 
 
