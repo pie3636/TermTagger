@@ -1,5 +1,5 @@
 from datasets import SentenceDataset, SlidingWindowDataset, TARSDataset, WordDataset
-from evaluation import convert_span_into_iob
+from evaluation import convert_span_into_iob, get_span_based_scores
 from flair.data import Sentence
 from models.logregr import MyLogisticRegression
 from models.svm import SupportVectorMachine
@@ -107,7 +107,12 @@ for sent_pred, sent_true in zip(tars_test_set, tars_test_set_eval):
 for i, (name, _) in enumerate(clfs):
     print(f'{name} results:')
     print(classification_report(dev_outputs, preds[i], target_names=datasets.tag_names, digits=4, zero_division=0))
+    precision, recall, f1score = get_span_based_scores(preds[i], dev_outputs)
+    print(f'[Span-based] Precision: {precision:.2f}, recall: {recall:.2f}, F-score: {f1score:.2f}')
 
 
 print('TARS results:')
 print(classification_report(all_true, all_pred, digits=4, zero_division=0))
+
+precision, recall, f1score = get_span_based_scores(all_pred, all_true)
+print(f'[Span-based] Precision: {precision:.2f}, recall: {recall:.2f}, F-score: {f1score:.2f}')

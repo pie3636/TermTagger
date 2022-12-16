@@ -15,7 +15,7 @@ def convert_span_into_iob(_in:Sentence) -> list:
     return iob
 
 
-def get_spans_from_iobs(tags:list, verbose=False):
+def get_spans_from_iobs(tags: list, verbose=False):
     spans = []
     for i, tag in enumerate(tags):
         if tag == 2:
